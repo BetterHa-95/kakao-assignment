@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오 라이프 파인더 비즈니스 기획안</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;700&display=swap');
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            color: #262626;
+            background-color: #f5f5f7;
+            line-height: 1.7;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem;
+        }
+        
+        .section-card {
+            background-color: #ffffff;
+            padding: 3rem;
+            border-radius: 2rem;
+            box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .section-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #6c5ce7, #8e44ad);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .btn-kakao {
+            background-color: #fee500;
+            color: #191919;
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            box-shadow: 0 4px 15px rgba(254, 229, 0, 0.4);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .btn-kakao:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(254, 229, 0, 0.5);
+        }
+        
+        .phone-mockup {
+            border: 12px solid #222;
+            border-radius: 3.5rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+            background-color: #f7f9fc;
+        }
+        
+        .phone-mockup::before {
+            content: '';
+            position: absolute;
+            top: 18px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 45%;
+            height: 6px;
+            background-color: #444;
+            border-radius: 9999px;
+        }
+
+        .animate-spin-fast {
+            animation: spin 0.7s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .loading-dot {
+            animation: pulse 1s infinite;
+        }
+        
+        .loading-dot:nth-child(2) { animation-delay: 0.2s; }
+        .loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.5); opacity: 0.5; }
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <!-- 1. 표지: 서비스 비전 및 핵심 메시지 -->
+    <div class="h-screen flex flex-col justify-center items-center text-center p-8 bg-black relative overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-70" style="background-image: url('https://placehold.co/1920x1080/D2B4DE/F5F5F5?text=비+오는+창가에서+따뜻한+차를+마시는+사람');"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-black to-transparent opacity-80"></div>
+        <div class="z-10 text-white">
+            <p class="text-xl md:text-3xl font-light mb-8">
+                “결정 피로를 넘어, 취향의 발견으로”
+            </p>
+            <h1 class="text-4xl md:text-7xl font-bold leading-tight mb-4 tracking-tight">
+                Kakao Life Finder
+            </h1>
+            <a href="#toc" class="btn-kakao inline-block shadow-xl mt-8">
+                기획안 살펴보기
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- 2. 목차: 보고서 구성 -->
+        <div id="toc" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800 border-b-2 pb-2">목차</h2>
+            <ul class="list-none space-y-3 text-lg font-medium">
+                <li><a href="#section1" class="text-gray-600 hover:text-purple-600 transition duration-300">1. 제안 배경과 트렌드 인사이트</a></li>
+                <li><a href="#section2" class="text-gray-600 hover:text-purple-600 transition duration-300">2. 핵심 가치 제안</a></li>
+                <li><a href="#section3" class="text-gray-600 hover:text-purple-600 transition duration-300">3. 사용자 시나리오 (UI/UX)</a></li>
+                <li><a href="#section4" class="text-gray-600 hover:text-purple-600 transition duration-300">4. 기술적 프레임워크 및 연동 방식</a></li>
+                <li><a href="#section5" class="text-gray-600 hover:text-purple-600 transition duration-300">5. 차별적 경험과 감성적 포인트</a></li>
+                <li><a href="#section6" class="text-gray-600 hover:text-purple-600 transition duration-300">6. 비즈니스 모델</a></li>
+                <li><a href="#section7" class="text-gray-600 hover:text-purple-600 transition duration-300">7. 기대 효과</a></li>
+                <li><a href="#section8" class="text-gray-600 hover:text-purple-600 transition duration-300">8. 비전</a></li>
+            </ul>
+        </div>
+        
+        <!-- 3.1 제안 배경과 트렌드 인사이트 -->
+        <section id="section1" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">1. 제안 배경과 트렌드 인사이트</h2>
+            <p class="mb-8 text-gray-600">
+                정보 과잉 시대에 현대인은 <span class="font-bold text-gray-900">‘결정 피로(Decision Fatigue)’</span>에 시달리고 있습니다. 수많은 정보 속에서 단순한 선택조차 큰 스트레스로 다가옵니다. 기존의 추천 서비스는 수동적인 정보 제공에 그쳤습니다.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8 text-center items-center">
+                <div class="p-6 rounded-xl bg-purple-50 shadow-inner">
+                    <h3 class="font-bold text-xl mb-4">Decision Fatigue: 정보 과잉의 시대</h3>
+                    <div class="w-full h-40 bg-gray-200 rounded-lg flex items-center justify-center relative">
+                        <!-- 단순 그래프 시각화 -->
+                        <div class="absolute bottom-0 left-0 right-0 h-full flex items-end justify-around p-4">
+                            <div class="w-1/4 h-1/4 bg-purple-400 rounded-t-lg transition-all duration-1000" style="height: 25%;"></div>
+                            <div class="w-1/4 h-2/4 bg-purple-500 rounded-t-lg transition-all duration-1000" style="height: 50%;"></div>
+                            <div class="w-1/4 h-3/4 bg-purple-600 rounded-t-lg transition-all duration-1000" style="height: 75%;"></div>
+                            <div class="w-1/4 h-full bg-purple-700 rounded-t-lg transition-all duration-1000" style="height: 100%;"></div>
+                        </div>
+                        <p class="absolute top-4 text-sm text-gray-600">정보량 급증 그래프</p>
+                    </div>
+                </div>
+                <div class="p-6 rounded-xl bg-indigo-50 shadow-inner">
+                    <h3 class="font-bold text-xl mb-4">소비 트렌드 변화: 작은 기쁨과 개인화</h3>
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div class="flex flex-col items-center">
+                            <div class="text-4xl mb-2">🧘‍♀️</div>
+                            <h4 class="font-bold text-lg">아보하</h4>
+                            <p class="text-sm text-gray-500">아주 보통의 하루</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-4xl mb-2">🎁</div>
+                            <h4 class="font-bold text-lg">토핑 경제</h4>
+                            <p class="text-sm text-gray-500">세밀한 커스터마이즈</p>
+                        </div>
+                        <div class="flex flex-col items-center">
+                            <div class="text-4xl mb-2">😌</div>
+                            <h4 class="font-bold text-lg">무해력</h4>
+                            <p class="text-sm text-gray-500">무해한 기분 좋은 경험</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p class="text-gray-600 text-center">
+                카카오 라이프 파인더는 이러한 트렌드 속에서 <span class="font-bold text-purple-600">‘선제적으로 제안하는(Predictive & Suggestive)’</span> AI 취향 큐레이션 플랫폼으로 패러다임을 전환합니다.
+            </p>
+        </section>
+
+        <!-- 3.2 핵심 가치 제안 -->
+        <section id="section2" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">2. 핵심 가치 제안</h2>
+            <ul class="list-none pl-0 mb-8 space-y-4 font-medium">
+                <li class="flex items-start"><span class="text-purple-500 text-3xl font-bold mr-3">✔</span> 당신이 모르는 당신의 취향까지 발견하게 합니다.</li>
+                <li class="flex items-start"><span class="text-purple-500 text-3xl font-bold mr-3">✔</span> 지금 이 순간의 무드, 예산, 동행에 맞는 최적의 경험을 자동으로 제안합니다.</li>
+                <li class="flex items-start"><span class="text-purple-500 text-3xl font-bold mr-3">✔</span> 단순 정보 탐색을 넘어, 새로운 라이프스타일을 창조하는 경험 경제 플랫폼으로 확장합니다.</li>
+            </ul>
+            <!-- 다이어그램: 카카오 생태계 연동 -->
+            <div class="p-8 bg-gray-50 rounded-xl border border-gray-200">
+                <h3 class="text-xl font-bold mb-6 text-center">서비스 연동 구조</h3>
+                <div class="flex flex-col md:flex-row justify-between items-center text-center">
+                    <div class="flex-1 p-4">
+                        <div class="bg-yellow-300 p-4 rounded-xl shadow-lg mb-2 text-gray-900 font-bold">카카오톡</div>
+                        <p class="text-sm text-gray-600">대화, 톡캘린더, 소셜 관계</p>
+                    </div>
+                    <div class="text-4xl text-gray-400 font-light hidden md:block">↔</div>
+                    <div class="text-4xl text-gray-400 font-light block md:hidden rotate-90 my-4">↔</div>
+                    <div class="flex-1 p-4">
+                        <div class="bg-blue-300 p-4 rounded-xl shadow-lg mb-2 text-gray-900 font-bold">카카오맵</div>
+                        <p class="text-sm text-gray-600">장소, 혼잡도, 길찾기</p>
+                    </div>
+                    <div class="text-4xl text-gray-400 font-light hidden md:block">↔</div>
+                    <div class="text-4xl text-gray-400 font-light block md:hidden rotate-90 my-4">↔</div>
+                    <div class="flex-1 p-4">
+                        <div class="bg-purple-300 p-4 rounded-xl shadow-lg mb-2 text-gray-900 font-bold">카카오페이</div>
+                        <p class="text-sm text-gray-600">결제, 예산 데이터</p>
+                    </div>
+                </div>
+                <div class="text-4xl text-gray-400 font-light mt-6 text-center">↓</div>
+                <div class="mt-6 p-6 bg-gray-700 text-white rounded-xl shadow-2xl text-center font-bold text-2xl">
+                    Kakao Life Finder AI Engine
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.3 사용자 시나리오 (UI/UX) -->
+        <section id="section3" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">3. 사용자 시나리오 (UI/UX)</h2>
+            
+            <!-- Scenario 1: AI 큐레이션 챗봇 -->
+            <div class="p-6 bg-gray-50 rounded-xl mb-8">
+                <h3 class="text-xl font-bold mb-4">Scenario 1: AI 큐레이션 챗봇 (단톡방)</h3>
+                <div class="flex justify-center">
+                    <div class="w-full md:w-3/5 phone-mockup">
+                        <div class="p-4 space-y-4 bg-gray-300 h-96 overflow-y-auto">
+                            <!-- 대화 내용 -->
+                            <div class="flex justify-end">
+                                <div class="bg-yellow-200 text-gray-800 p-3 rounded-xl rounded-br-none max-w-xs shadow-sm">
+                                    주말에 뭐 하지? 전시회 볼까?
+                                </div>
+                            </div>
+                            <div class="flex justify-start">
+                                <div class="bg-white text-gray-800 p-3 rounded-xl rounded-bl-none max-w-xs shadow-sm">
+                                    한강 피크닉은 어때?
+                                </div>
+                            </div>
+                            <div class="flex justify-end">
+                                <div class="bg-yellow-200 text-gray-800 p-3 rounded-xl rounded-br-none max-w-xs shadow-sm">
+                                    힙지로 맛집 가고 싶은데!
+                                </div>
+                            </div>
+                            <!-- AI 코스 제안 기능 추가 -->
+                            <div class="flex flex-col items-center mt-4">
+                                <button id="propose-btn" class="btn-kakao font-bold flex items-center justify-center mb-4">
+                                    ✨ AI 코스 제안하기
+                                </button>
+                                <div id="propose-response-container" class="w-full flex justify-start hidden">
+                                    <div class="bg-blue-100 text-blue-800 p-4 rounded-xl max-w-sm shadow-md">
+                                        <p id="propose-response-text" class="text-sm"></p>
+                                        <div id="propose-response-loading" class="hidden flex items-center justify-center space-x-2 mt-4">
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full loading-dot"></div>
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full loading-dot"></div>
+                                            <div class="w-2 h-2 bg-blue-500 rounded-full loading-dot"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario 2: 라이프 파인더 채널 (개인화) -->
+            <div class="p-6 bg-gray-50 rounded-xl mb-8">
+                <h3 class="text-xl font-bold mb-4">Scenario 2: 라이프 파인더 채널 (개인화)</h3>
+                <div class="flex justify-center">
+                    <div class="w-full md:w-3/5 phone-mockup">
+                        <div class="p-4 space-y-4 bg-gray-200 h-96 overflow-y-auto">
+                            <!-- 카카오톡 채널 화면 UI -->
+                            <div class="flex items-center space-x-2 p-2 bg-white rounded-xl shadow">
+                                <div class="w-12 h-12 rounded-full bg-gray-300 flex items-center justify-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4.484 4.484 0 00-2.484 2.227L7.33 11.2a1 1 0 01-1.464-.326l-3.268-5.32c-.52-.85-.92-1.74-.92-2.73 0-2.485 2.015-4.5 4.5-4.5h5.5c2.485 0 4.5 2.015 4.5 4.5 0 1.54-.74 2.97-1.92 4.14l-2.188 2.188a1 1 0 01-1.414 0l-.707-.707a1 1 0 010-1.414l2.188-2.188A3.484 3.484 0 0012 4.354z" />
+                                    </svg>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="font-bold text-lg">카카오 라이프 파인더</p>
+                                    <p class="text-sm text-gray-500">나만의 취향 지도를 만나보세요.</p>
+                                </div>
+                            </div>
+
+                            <!-- 카드형 콘텐츠 피드 -->
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                                <img src="https://placehold.co/600x300/F0D4A0/ffffff?text=고즈넉한+북촌+찻집" alt="고즈넉한 북촌 찻집" class="w-full h-40 object-cover">
+                                <div class="p-4">
+                                    <h4 class="font-bold text-lg">고즈넉한 북촌 찻집 가이드 🍂</h4>
+                                    <p class="text-sm text-gray-600">당신의 '차' 취향을 저격하는 북촌 한옥 찻집 리스트</p>
+                                </div>
+                            </div>
+                            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                                <div class="flex items-center p-4">
+                                    <div class="text-4xl mr-4">☕️</div>
+                                    <div class="flex-1">
+                                        <h4 class="font-bold text-lg">차 애호가를 위한 오픈채팅방</h4>
+                                        <p class="text-sm text-gray-600">같은 취향을 가진 사람들과 이야기 나눠보세요.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario 3: 감성적 순간 제안 -->
+            <div class="p-6 bg-gray-50 rounded-xl">
+                <h3 class="text-xl font-bold mb-4">Scenario 3: 감성적 순간 제안</h3>
+                <div class="flex justify-center">
+                    <div class="w-full md:w-3/5 phone-mockup">
+                        <div class="p-4 h-96">
+                            <!-- 푸시 알림 & 전용 카드 -->
+                            <div class="bg-gray-800 text-white p-3 rounded-lg shadow-xl mb-4 text-sm">
+                                <span class="text-yellow-400 font-bold">[카카오 라이프 파인더]</span> “오늘 소나기가 온대요. 따뜻한 무알콜 칵테일 한 잔 어떠세요?”
+                            </div>
+                            <div class="bg-white rounded-xl shadow-lg border border-gray-200">
+                                <img src="https://placehold.co/600x300/B8B8F2/ffffff?text=따뜻한+음료+이미지" alt="비 오는 창가와 따뜻한 음료" class="w-full h-40 object-cover rounded-t-xl">
+                                <div class="p-4">
+                                    <p class="text-purple-500 font-bold mb-1">오늘의 무드: 따뜻한 위로가 필요한 당신에게</p>
+                                    <h4 class="font-bold text-xl mb-2">퇴근길, 맞춤 제안</h4>
+                                    <p class="text-sm text-gray-600 mb-4">회사 근처 바에서 20분 체류권이 준비되어 있어요. 지금 예약하고 편안한 시간을 가져보세요. 예상 비용: 8,000원</p>
+                                    <button class="w-full btn-kakao font-bold">예약하기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.4 기술적 프레임워크 및 연동 방식 -->
+        <section id="section4" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">4. 기술적 프레임워크 및 연동 방식</h2>
+            <div class="p-8 bg-gray-50 rounded-xl border border-gray-200">
+                <h3 class="text-xl font-bold mb-6 text-center">기술적 워크플로우</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center items-start">
+                    <!-- 1단계: 데이터 수집 -->
+                    <div class="flex flex-col items-center">
+                        <div class="bg-gray-200 p-4 rounded-full mb-3 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H3a1 1 0 01-1-1v-3a1 1 0 011-1h1a2 2 0 100-4H3a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v1a2 2 0 104 0V7a1 1 0 011-1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H3a1 1 0 01-1-1V7a1 1 0 011-1h3a1 1 0 011 1v1a2 2 0 104 0z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">데이터 수집</h4>
+                        <p class="text-sm text-gray-600">카톡 대화, 맵 로그, 페이 결제 이력</p>
+                    </div>
+                    <!-- 2단계: AI 분석 엔진 -->
+                    <div class="flex flex-col items-center col-span-1 lg:col-span-2">
+                        <div class="bg-gray-200 p-4 rounded-full mb-3 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19V6l-2-2m2 15l-2-2m2 2l-2-2m0 0H9m-2 2h2m0 0H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2H9a2 2 0 01-2-2v-1z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">AI 분석 엔진</h4>
+                        <p class="text-sm text-gray-600">
+                            <span class="font-bold">Context Layer:</span> 대화 분석<br>
+                            <span class="font-bold">Environment Layer:</span> 실시간 환경<br>
+                            <span class="font-bold">Preference Layer:</span> 개인화 모델
+                        </p>
+                    </div>
+                    <!-- 3단계: 실행 및 결과 -->
+                    <div class="flex flex-col items-center">
+                        <div class="bg-gray-200 p-4 rounded-full mb-3 shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h4 class="font-bold text-lg mb-1">실행 및 결과</h4>
+                        <p class="text-sm text-gray-600">예약, 길찾기, 결제, 공유</p>
+                    </div>
+                </div>
+                <div class="mt-8 text-center text-gray-600">
+                    <p>사용자의 <span class="font-bold">‘무의식적 데이터’</span>가 AI 엔진을 거쳐 <span class="font-bold">‘의식적 경험’</span>으로 전환되는 기술적 흐름을 보여줍니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.5 차별적 경험과 감성적 포인트 -->
+        <section id="section5" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">5. 차별적 경험과 감성적 포인트</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- AI가 내 마음을 읽었다 -->
+                <div class="p-6 bg-gray-50 rounded-xl border border-gray-200 text-center">
+                    <h3 class="text-xl font-bold mb-4">AI가 내 마음을 읽었다</h3>
+                    <img src="https://placehold.co/400x300/C1E1C1/000000?text=사용자+만족도+이미지" alt="만족한 사용자 이미지" class="rounded-lg shadow-md mb-4 mx-auto">
+                    <p class="text-sm text-gray-600">사용자 만족도가 높은 순간을 나타내는 밝고 긍정적인 표정</p>
+                </div>
+                <!-- 나만의 취향 지도 -->
+                <div class="flex flex-col items-center p-6 bg-gray-50 rounded-xl border border-gray-200">
+                    <h3 class="text-xl font-bold mb-4">✨ AI 비전 이미지</h3>
+                    <p class="text-sm text-gray-600 mb-4 text-center">아래 버튼을 누르면 AI가 기획안의 핵심 키워드를 시각화한 이미지를 생성합니다.</p>
+                    <div id="image-container" class="w-full h-64 bg-gray-200 rounded-lg flex items-center justify-center overflow-hidden mb-4">
+                        <span id="loading-indicator" class="hidden text-gray-500">이미지 생성 중...</span>
+                    </div>
+                    <button id="generate-image-btn" class="btn-kakao font-bold">
+                        AI 비전 이미지 생성하기
+                    </button>
+                </div>
+            </div>
+            <div class="mt-8 text-center text-gray-600">
+                <p>카카오톡 프로필에 '무드 캡슐', '취향 코스' 같은 태그를 추가하여 . 사용자의 새로운 유행을 선도합니다.</p>
+            </div>
+        </section>
+
+        <!-- 3.6 비즈니스 모델 -->
+        <section id="section6" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">6. 비즈니스 모델</h2>
+            <p class="mb-8 text-gray-600">
+                다양한 수익 모델을 통해 안정적이고 지속 가능한 비즈니스 성장을 추구합니다.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 text-center">
+                <div class="p-6 bg-gray-100 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg mb-2">예약·체험 수수료</h3>
+                    <p class="text-sm text-gray-600">제휴 장소·액티비티 예약 시 5~10% 수수료</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg mb-2">브랜드 코랩 패키지</h3>
+                    <p class="text-sm text-gray-600">카카오프렌즈 IP 연계 코스·스탬프 미션</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg mb-2">프리미엄 멤버십</h3>
+                    <p class="text-sm text-gray-600">광고 없는 추천, 독점 큐레이션 제공</p>
+                </div>
+                <div class="p-6 bg-gray-100 rounded-xl shadow-md">
+                    <h3 class="font-bold text-lg mb-2">데이터 인사이트 판매</h3>
+                    <p class="text-sm text-gray-600">익명화된 ‘취향 리포트’ 판매</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.7 기대 효과 -->
+        <section id="section7" class="section-card mb-12">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">7. 기대 효과</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="flex flex-col items-center">
+                    <div class="text-5xl mb-2">🧠</div>
+                    <h3 class="font-bold text-lg">사용자</h3>
+                    <p class="text-sm text-gray-600">결정 피로 감소, 새로운 취향 발견</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-5xl mb-2">📈</div>
+                    <h3 class="font-bold text-lg">파트너</h3>
+                    <p class="text-sm text-gray-600">안정적 고객 유입, 매출 증대</p>
+                </div>
+                <div class="flex flex-col items-center">
+                    <div class="text-5xl mb-2">🔗</div>
+                    <h3 class="font-bold text-lg">카카오</h3>
+                    <p class="text-sm text-gray-600">서비스 생태계 확장 허브</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.8 비전 -->
+        <section id="section8" class="section-card mb-12 text-center">
+            <h2 class="text-3xl font-bold mb-6 text-gray-800">8. 비전</h2>
+            <div class="p-8 bg-purple-50 rounded-xl">
+                <h3 class="text-2xl font-bold mb-4">"오늘 뭐하지?"</h3>
+                <h3 class="text-2xl font-bold mb-6">라는 질문을</h3>
+                <div class="text-3xl md:text-5xl font-extrabold mb-4">
+                    <span class="gradient-text">"내일의 취향을 발견하는 경험"</span>으로 바꾼다.
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        const API_KEY = ""; // Automatically provided by the environment
+
+        document.getElementById('generate-image-btn').addEventListener('click', async () => {
+            const container = document.getElementById('image-container');
+            const loadingIndicator = document.getElementById('loading-indicator');
+            const button = document.getElementById('generate-image-btn');
+            
+            // Show loading state
+            container.innerHTML = '';
+            loadingIndicator.classList.remove('hidden');
+            button.disabled = true;
+            button.innerHTML = '생성 중...';
+
+            const prompt = "AI가 한국인들의 일상 속 결정 피로를 해소하고, 작지만 무해한 행복과 개인의 취향을 발견하도록 돕는 모습을 시각화한 이미지. 카카오톡과 카카오맵의 아이콘이 연결된 모습, 부드러운 색감, 따뜻하고 감성적인 분위기, 미니멀하고 깨끗한 디자인. 픽사 스타일.";
+            
+            // Exponential backoff retry logic
+            const maxRetries = 3;
+            let retries = 0;
+            let success = false;
+            
+            while (retries < maxRetries && !success) {
+                try {
+                    const payload = { instances: { prompt: prompt }, parameters: { "sampleCount": 1} };
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-3.0-generate-002:predict?key=${API_KEY}`;
+                    
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const base64Data = result?.predictions?.[0]?.bytesBase64Encoded;
+
+                    if (!base64Data) {
+                        throw new Error("No image data received from API.");
+                    }
+
+                    const imageUrl = `data:image/png;base64,${base64Data}`;
+                    const imgElement = document.createElement('img');
+                    imgElement.src = imageUrl;
+                    imgElement.alt = "AI가 생성한 라이프 파인더 비전 이미지";
+                    imgElement.className = "w-full h-full object-cover rounded-lg animate-fade-in";
+                    
+                    container.innerHTML = '';
+                    container.appendChild(imgElement);
+                    success = true;
+
+                } catch (error) {
+                    console.error("Image generation failed on retry attempt", retries + 1, ":", error);
+                    retries++;
+                    if (retries < maxRetries) {
+                        const delay = Math.pow(2, retries) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        container.innerHTML = `<span class="text-red-500 text-center">이미지 생성에 실패했습니다.<br>(${error.message})</span>`;
+                    }
+                }
+            }
+            
+            loadingIndicator.classList.add('hidden');
+            button.disabled = false;
+            button.innerHTML = 'AI 비전 이미지 생성하기';
+        });
+
+        document.getElementById('propose-btn').addEventListener('click', async () => {
+            const responseContainer = document.getElementById('propose-response-container');
+            const responseText = document.getElementById('propose-response-text');
+            const loadingIndicator = document.getElementById('propose-response-loading');
+
+            responseContainer.classList.remove('hidden');
+            responseText.innerHTML = '';
+            loadingIndicator.classList.remove('hidden');
+
+            const userPrompt = "주말에 뭐 하지? 전시회 볼까? 한강 피크닉은 어때? 힙지로 맛집 가고 싶은데!";
+            const systemPrompt = "카카오 라이프 파인더 챗봇 역할을 맡아. 사용자의 대화 내용을 분석하고, 종합하여 가장 적합한 주말 코스를 한 문장으로 제안해줘. 이모지를 섞어. 코스 제안에는 레스토랑, 활동, 장소를 포함해야 해. 답변은 50단어 이내로 간결하게 작성해줘.";
+            
+            const payload = {
+                contents: [{ parts: [{ text: userPrompt }] }],
+                systemInstruction: { parts: [{ text: systemPrompt }] },
+            };
+            
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+            
+            const maxRetries = 3;
+            let retries = 0;
+            let success = false;
+            
+            while (retries < maxRetries && !success) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`API call failed with status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const text = result?.candidates?.[0]?.content?.parts?.[0]?.text;
+                    
+                    if (text) {
+                        responseText.innerHTML = text;
+                        success = true;
+                    } else {
+                        throw new Error("No text data received from API.");
+                    }
+
+                } catch (error) {
+                    console.error("LLM call failed on retry attempt", retries + 1, ":", error);
+                    retries++;
+                    if (retries < maxRetries) {
+                        const delay = Math.pow(2, retries) * 1000;
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                    } else {
+                        responseText.innerHTML = `<span class="text-red-500">제안 생성에 실패했습니다. 잠시 후 다시 시도해 주세요.</span>`;
+                    }
+                }
+            }
+
+            loadingIndicator.classList.add('hidden');
+        });
+    </script>
+</body>
+</html>
